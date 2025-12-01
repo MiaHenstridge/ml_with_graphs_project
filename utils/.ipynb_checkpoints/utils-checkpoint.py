@@ -94,6 +94,16 @@ def after_first_hyphen(text):
     # Condition: if the prefix is exactly "Bridgeway Funds, Inc."
     if before == "Bridgeway Funds, Inc.":
         return f"Bridgeway {after}"
+    elif before == 'TIAA-CREF Funds':
+        return f"{after.replace('CREF Funds-', '')}"
+    elif before == 'SPDR SERIES TRUST':
+        return f"{after.replace('(R)', '')}"
+    elif before == 'DFA INVESTMENT DIMENSIONS GROUP INC':
+        return text
+    elif after.startswith('Price (T.Rowe)'):
+        remove_words = ['Markets', 'Trust', 'Fund', 'Stock', 'Fd.', 'Equity']
+        after = ' '.join(word for word in after.split() if word not in remove_words)
+        return f"T.Rowe Price {after.strip()}"
     else:
         return after
 
