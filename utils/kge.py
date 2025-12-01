@@ -63,10 +63,12 @@ def build_global_triples(
         head_type = rel["head_type"]
         tail_type = rel["tail_type"]
         edge_index = rel["edge_index"]  # [2, num_edges]
+
+        print(f"Building global triples for ({head_type} {relation} {tail_type})")
         
         # Convert local IDs to global IDs
-        h_global = [entity2global[head_type][h.item()] for h in edge_index[0]]
-        t_global = [entity2global[tail_type][t.item()] for t in edge_index[1]]
+        h_global = [entity2global[head_type][str(h.item())] for h in edge_index[0]]
+        t_global = [entity2global[tail_type][str(t.item())] for t in edge_index[1]]
         
         # Append triples
         global_triples.extend([(h, relation, t) for h, t in zip(h_global, t_global)])
