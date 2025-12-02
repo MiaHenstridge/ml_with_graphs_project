@@ -3,9 +3,7 @@
   "stock_symbol": 4171,
   "industry": 8778,
   "sector": 8923,
-  "exchange": 8935,
-  "officer": 8939,
-  "institution": 39227,
-  "mutualfund": 41895,
-  "fund_symbol": 44116
+  "institution": 8935,
+  "fund": 11603,
+  "fund_symbol": 13824
 }
