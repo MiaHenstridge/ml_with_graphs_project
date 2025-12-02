@@ -80,3 +80,46 @@ def extract_institution_names(arr):
                 inst = o.get("Holder")
                 results.append(inst.lower().strip())
     return results
+
+
+def after_first_hyphen(text):
+    # Regex: capture before-first-hyphen as group 1, after-first-hyphen as group 2
+    match = re.search(r'^([^-]*)-(.*)', text)
+    if not match:
+        return text
+
+    before = match.group(1).strip()
+    after = match.group(2).strip()
+
+    # Condition: if the prefix is exactly "Bridgeway Funds, Inc."
+    if before == "Bridgeway Funds, Inc.":
+        return f"Bridgeway {after}"
+    elif before == 'TIAA-CREF Funds':
+        return f"{after.replace('CREF Funds-', '')}"
+    elif before == 'SPDR SERIES TRUST':
+        return f"{after.replace('(R)', '')}"
+    elif before == 'DFA INVESTMENT DIMENSIONS GROUP INC':
+        return text
+    elif after.startswith('Price (T.Rowe)'):
+        remove_words = ['Markets', 'Trust', 'Fund', 'Stock', 'Fd.', 'Equity']
+        after = ' '.join(word for word in after.split() if word not in remove_words)
+        return f"T.Rowe Price {after.strip()}"
+    else:
+        return after
+
+
+def extract_mutualfund_names(arr):
+    """
+    Returns list of mutual funds names
+    """
+    results = []
+    if isinstance(arr, str):
+        arr = parse_list(arr)
+    if isinstance(arr, (list, np.ndarray)):
+        for o in arr:
+            if isinstance(o, dict) and "Holder" in o:
+                fund = o.get("Holder")
+                fund = after_first_hyphen(fund)
+                
+                results.append(fund.lower().strip())
+    return results
