@@ -1,0 +1,14 @@
+{
+  "healthcare": 0,
+  "industrials": 1,
+  "consumer-defensive": 2,
+  "consumer-cyclical": 3,
+  "": 4,
+  "technology": 5,
+  "communication-services": 6,
+  "financial-services": 7,
+  "basic-materials": 8,
+  "energy": 9,
+  "utilities": 10,
+  "real-estate": 11
+}

@@ -1,0 +1,12 @@
+sector,marketCap,marketWeight,companies,ytdExcessReturn,oneYearExcessReturn,threeYearExcessReturn,fiveYearExcessReturn
+healthcare,7.234,9.41,1178,-1.46,-5.89,-57.17,-55.67
+industrials,6.388,8.31,766,0.68,-5.09,-25.85,-18.07
+consumer-defensive,3.675,4.78,256,-12.35,-14.44,-53.5,-58.43
+consumer-cyclical,8.239,10.71,614,-9.04,-6.54,-4.21,-34.19
+technology,23.526,30.65,827,4.56,5.74,61.44,49.99
+communication-services,8.085,10.51,269,18.43,21.17,66.62,-9.14
+financial-services,11.339,14.74,1498,-2.34,-4.5,-15.37,-7.02
+basic-materials,2,2.6,277,13.92,2.78,-33.72,-28.19
+energy,3.048,4.01,255,-8.96,-14.23,-64.09,44.3
+utilities,1.626,2.11,108,-5.07,-9.72,-41.85,-41.16
+real-estate,1.671,2.17,275,-11.94,-16.67,-54.37,-59.81
