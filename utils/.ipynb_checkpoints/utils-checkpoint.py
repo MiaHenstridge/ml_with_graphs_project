@@ -3,6 +3,9 @@
 import re
 import numpy as np
 import ast
+import datetime
+import pandas as pd
+
 
 TITLE_PREFIX_PATTERN = re.compile(
     r"^(mr\.?|ms\.?|mrs\.?|dr\.?|prof\.?)\s+",
@@ -123,3 +126,24 @@ def extract_mutualfund_names(arr):
                 
                 results.append(fund.lower().strip())
     return results
+
+
+def years_since_timestamp(timestamp: float) -> float:
+    """
+    Calculate the number of years elapsed since a given Unix timestamp.
+    Handles null values (NaN) safely.
+    
+    Parameters:
+    - timestamp: float or int, Unix timestamp in seconds
+    
+    Returns:
+    - float: years elapsed, or np.nan if timestamp is null
+    """
+    if pd.isna(timestamp):
+        return np.nan
+    
+    date = datetime.datetime.utcfromtimestamp(timestamp)
+    now = datetime.datetime.utcnow()
+    delta_days = (now - date).days
+    years_elapsed = delta_days / 365.25  # account for leap years
+    return years_elapsed
