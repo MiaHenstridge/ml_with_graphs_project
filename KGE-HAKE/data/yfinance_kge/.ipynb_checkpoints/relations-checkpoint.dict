@@ -1,0 +1,4 @@
+0	belongs_to
+1	has_symbol
+2	holds
+3	is_part_of

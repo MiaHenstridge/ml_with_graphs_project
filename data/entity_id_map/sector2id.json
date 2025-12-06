@@ -3,11 +3,13 @@
   "industrials": 1,
   "consumer-defensive": 2,
   "consumer-cyclical": 3,
-  "technology": 4,
-  "communication-services": 5,
-  "financial-services": 6,
-  "basic-materials": 7,
-  "energy": 8,
-  "utilities": 9,
-  "real-estate": 10
+  "null": 4,
+  "NaN": 5,
+  "technology": 6,
+  "communication-services": 7,
+  "financial-services": 8,
+  "basic-materials": 9,
+  "energy": 10,
+  "utilities": 11,
+  "real-estate": 12
 }
