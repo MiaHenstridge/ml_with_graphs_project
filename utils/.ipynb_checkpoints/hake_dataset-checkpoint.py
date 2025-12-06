@@ -15,11 +15,11 @@ def invert_nested_dict(nested_dict):
 def invert_dict(dict_):
     return {v: k for k, v in dict_.items()}
 
-def make_hake_dataset(id_mapping_dir, edge_index_dir, out_dir):
+def make_hake_triples(id_mapping_dir, edge_index_dir):
     """
     Prepare triples input: list of (head, relation, tail) for making hake dataset
     """
-    os.makedirs(out_dir, exist_ok=True)
+    # os.makedirs(out_dir, exist_ok=True)
     
     ########### get global triples ##########
     with open(os.path.join(edge_index_dir, 'global_triples.json')) as f:
@@ -90,51 +90,51 @@ def make_hake_dataset(id_mapping_dir, edge_index_dir, out_dir):
             print(f"Tail node: Type {t_type_}, local id: {t_local_}")
             return
 
-    # return hake_triples
+    return hake_triples
     
 
 
-# def make_hake_dataset(triples, out_dir):
-#     """
-#     triples: list of (head, relation, tail) — all strings
-#     out_dir: directory where HAKE-formatted files will be written
+def make_hake_dataset(triples, out_dir):
+    """
+    triples: list of (head, relation, tail) — all strings
+    out_dir: directory where HAKE-formatted files will be written
 
-#     Produces:
-#         entities.dict      --> global_entity_id \t entity_name
-#         relations.dict     --> relation_id \t relation_name
-#         train.txt          --> head_name \t relation_name \t tail_name
-#     """
+    Produces:
+        entities.dict      --> global_entity_id \t entity_name
+        relations.dict     --> relation_id \t relation_name
+        train.txt          --> head_name \t relation_name \t tail_name
+    """
 
-#     os.makedirs(out_dir, exist_ok=True)
+    os.makedirs(out_dir, exist_ok=True)
 
-#     # ---- 1. Build entity dictionary ----
-#     entity_set = set()
-#     relation_set = set()
+    # ---- 1. Build entity dictionary ----
+    entity_set = set()
+    relation_set = set()
 
-#     for h, r, t in triples:
-#         entity_set.add(h)
-#         entity_set.add(t)
-#         relation_set.add(r)
+    for h, r, t in triples:
+        entity_set.add(h)
+        entity_set.add(t)
+        relation_set.add(r)
 
-#     entity_list = sorted(list(entity_set))
-#     relation_list = sorted(list(relation_set))
+    entity_list = sorted(list(entity_set))
+    relation_list = sorted(list(relation_set))
 
-#     entity2id = {e: i for i, e in enumerate(entity_list)}
-#     rel2id = {r: i for i, r in enumerate(relation_list)}
+    entity2id = {e: i for i, e in enumerate(entity_list)}
+    rel2id = {r: i for i, r in enumerate(relation_list)}
 
-#     # ---- 2. Write entities.dict ----
-#     with open(os.path.join(out_dir, "entities.dict"), "w", encoding="utf-8") as f:
-#         for entity, eid in entity2id.items():
-#             f.write(f"{eid}\t{entity}\n")
+    # ---- 2. Write entities.dict ----
+    with open(os.path.join(out_dir, "entities.dict"), "w", encoding="utf-8") as f:
+        for entity, eid in entity2id.items():
+            f.write(f"{eid}\t{entity}\n")
 
-#     # ---- 3. Write relations.dict ----
-#     with open(os.path.join(out_dir, "relations.dict"), "w", encoding="utf-8") as f:
-#         for rel, rid in rel2id.items():
-#             f.write(f"{rid}\t{rel}\n")
+    # ---- 3. Write relations.dict ----
+    with open(os.path.join(out_dir, "relations.dict"), "w", encoding="utf-8") as f:
+        for rel, rid in rel2id.items():
+            f.write(f"{rid}\t{rel}\n")
 
-#     # ---- 4. Write train.txt (HAKE format uses names, not IDs) ----
-#     with open(os.path.join(out_dir, "train.txt"), "w", encoding="utf-8") as f:
-#         for h, r, t in triples:
-#             f.write(f"{h}\t{r}\t{t}\n")
+    # ---- 4. Write train.txt (HAKE format uses names, not IDs) ----
+    with open(os.path.join(out_dir, "train.txt"), "w", encoding="utf-8") as f:
+        for h, r, t in triples:
+            f.write(f"{h}\t{r}\t{t}\n")
 
-    # return
+    return
