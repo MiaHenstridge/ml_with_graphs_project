@@ -69,7 +69,7 @@ def make_hake_triples(id_mapping_dir, edge_index_dir):
     }
 
     hake_triples = []
-    # entity2id = {}
+    entity2gid = {}
     # rel2id = {}
 
     for (h, r, t) in global_triples:
@@ -85,12 +85,16 @@ def make_hake_triples(id_mapping_dir, edge_index_dir):
             t_name = id_dict_map[t_type_][int(t_local_)]
     
             hake_triples.append((h_name, r, t_name))
+            if h_name not in entity2gid:
+                entity2gid[h_name] = h
+            if t_name not in entity2gid: 
+                entity2gid[t_name] = t
         except KeyError:
             print(f"Head node: Type {h_type_}, local id: {h_local_}")
             print(f"Tail node: Type {t_type_}, local id: {t_local_}")
             return
 
-    return hake_triples
+    return hake_triples, entity2gid
     
 
 
