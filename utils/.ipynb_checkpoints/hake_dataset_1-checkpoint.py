@@ -5,10 +5,6 @@ from collections import defaultdict
 from torch_geometric.transforms import RandomLinkSplit
 from torch_geometric.data import HeteroData # Ensure this is imported
 
-# set seed
-from torch_geometric import seed_everything
-seed_everything(42)
-
 
 # --- PROVIDED FUNCTIONS (NO MODIFICATION) ---
 

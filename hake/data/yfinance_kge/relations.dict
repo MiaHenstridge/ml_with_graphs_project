@@ -1,4 +1,4 @@
-0	belongs_to
+0	holds
 1	has_symbol
-2	holds
-3	is_part_of
+2	is_part_of
+3	belongs_to
